@@ -61,7 +61,8 @@ class Parser(object):
         sample = sample_str.replace(";", ",").split(",")
 
         options = self.getOptions(params[3:])
-        stype, orig_col, ident = self.getSource(ident, sample_str)
+        separator = options.get('sep', unicode(DEFAULT_SEPARATOR))
+        stype, orig_col, ident = self.getSource(ident, sample_str, separator)
 
         rng = None
         try:
@@ -121,7 +122,7 @@ class Parser(object):
             options[key] = val
         return options
 
-    def getSource(self, ident, sample_str):
+    def getSource(self, ident, sample_str, separator):
         """Identify item source"""
         # inline collections:
         col_inline = self.inlinecols.get(ident, None)
@@ -130,7 +131,7 @@ class Parser(object):
         inline = ident.split("|")
         if len(inline) == 2:
             ident = inline[0]
-            col = inline[1].split(",")
+            col = inline[1].split(separator)
             self.inlinecols[ident] = col
             return "inline", col, ident
         # generators:

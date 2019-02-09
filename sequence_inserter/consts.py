@@ -10,5 +10,6 @@ License: GNU AGPL, version 3 or later; https://www.gnu.org/licenses/agpl-3.0.en.
 
 # Default settings:
 DEFAULT_DELIMITER = ", "
+DEFAULT_SEPARATOR = ","
 DEFAULT_RANGE = (0, 100)
 DEFAULT_DECIMALS = 2
